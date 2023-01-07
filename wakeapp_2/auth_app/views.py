@@ -1,15 +1,18 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as generic_views
 from rest_framework import generics as api_generic_views, permissions
 from rest_framework.authtoken import views as api_views
 from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 
 from wakeapp_2.auth_app import serializers as auth_serializers
+from wakeapp_2.auth_app.serializers import LoginSerializer
 
 UserModel = get_user_model()
 
@@ -22,9 +25,19 @@ class RegisterView(api_generic_views.CreateAPIView):
     )
 
 
-class LoginView(api_views.ObtainAuthToken):
-    pass
+class LoginView(ObtainAuthToken):
 
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'user_id': user.pk,
+            'email': user.email
+        })
 
 class LogoutView(api_views.APIView):
     @staticmethod

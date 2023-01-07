@@ -8,17 +8,14 @@ from django.contrib.auth import get_user_model
 
 
 class Event(models.Model):
-    # Fields for the event content
-    title = models.CharField(max_length=255)
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    # Field for the user who created the event
+    name = models.CharField(max_length=255)
     creator = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    visible_to = models.ManyToManyField(UserModel, through='EventVisibility', related_name='visible_events')
+    location = models.CharField(max_length=255, blank=True)
+    date = models.DateTimeField()
 
-    # Field for the list of friends who are allowed to view the event
-    friends = models.ManyToManyField(UserModel, related_name='viewable_events')
 
-    def __str__(self):
-        return self.title
+class EventVisibility(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)

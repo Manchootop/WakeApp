@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'wakeapp_2.main',
     'wakeapp_2.auth_app',
     'wakeapp_2.friendship',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
