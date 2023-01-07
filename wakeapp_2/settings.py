@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'wakeapp_2.main',
+    'wakeapp_2.auth_app',
+    'wakeapp_2.friendship',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +121,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'auth_app.WakeAppUser'
