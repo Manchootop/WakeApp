@@ -25,15 +25,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
         return result
 
 
-from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
-from rest_framework.authtoken.models import Token
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
-
 class LoginSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = UserModel
         fields = ['email', 'password']
-
