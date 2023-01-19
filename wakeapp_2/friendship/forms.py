@@ -1,9 +1,9 @@
 from django import forms
-from .models import Friendship
+from .models import FriendshipRequest
 
 class FriendshipRequestForm(forms.ModelForm):
     class Meta:
-        model = Friendship
+        model = FriendshipRequest
         fields = ['receiver', 'status']
         widgets = {
             'receiver': forms.HiddenInput(),
