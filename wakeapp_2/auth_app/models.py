@@ -13,7 +13,10 @@ def validate_only_letters(value):
 
 
 class WakeAppUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(
+    USERNAME_MAX_LENGTH = 25
+
+    username = models.CharField(
+        max_length=USERNAME_MAX_LENGTH,
         unique=True,
     )
 
@@ -25,7 +28,7 @@ class WakeAppUser(AbstractBaseUser, PermissionsMixin):
         default=False,
     )
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'username'
 
     objects = WakeAppUserManager()
 
@@ -42,9 +45,9 @@ class WakeAppProfile(models.Model):
 
     GENDERS = [(x, x) for x in (MALE, FEMALE, DO_NOT_SHOW)]
 
-    username = models.CharField(
-        max_length=20,
-        unique=True,
+    email = models.EmailField(
+        null=True,
+        blank=True,
     )
 
     first_name = models.CharField(

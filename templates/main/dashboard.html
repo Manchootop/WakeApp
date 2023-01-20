@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% extends 'base.html' %}
+{% block page_content %}
+    <h1>DashBoard</h1>
+    <p>This is {{ request.user }}</p>
+{% endblock %}
+
+
+</body>
+</html>

@@ -2,23 +2,14 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.renderers import BrowsableAPIRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.views.generic import CreateView, DetailView, TemplateView
 
 from wakeapp_2.main.models import Event, EventVisibility
 from wakeapp_2.main.serializers import EventSerializer, UserSerializer
 
-# class CreateEventView(APIView):
-#     def post(self, request):
-#         serializer = EventSerializer(data=request.data)
-#         if serializer.is_valid():
-#             event = serializer.save()
-#             if event.visibility == 'FRIENDS':
-#                 event.visible_to.set(request.data['visible_to'])
-#             elif event.visibility == 'ALL_FRIENDS':
-#                 event.visible_to.set(request.user.friends.all())
-#             return Response(serializer.data, status=201)
-#         return Response(serializer.errors, status=400)
 
-from rest_framework import generics, status
+class DashboardView(TemplateView):
+    template_name = 'main/dashboard.html'
 
 
 # class CreateEventView(generics.CreateAPIView):
@@ -56,7 +47,6 @@ from rest_framework import generics, status
 
 from django.urls import reverse_lazy
 from django.shortcuts import render
-from django.views.generic import CreateView, DetailView
 
 
 class CreateEventView(CreateView):
