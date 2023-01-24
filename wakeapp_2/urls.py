@@ -19,6 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('wakeapp_2.main.urls')),
-    path('account/', include('wakeapp_2.auth_app.urls')),
+    path('accounts/', include('wakeapp_2.auth_app.urls')),
 
 ]

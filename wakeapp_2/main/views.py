@@ -12,6 +12,9 @@ class DashboardView(TemplateView):
     template_name = 'main/dashboard.html'
 
 
+class DesignView(TemplateView):
+    template_name = 'main/design.html'
+
 # class CreateEventView(generics.CreateAPIView):
 #     renderer_classes = [BrowsableAPIRenderer]
 #     serializer_class = EventSerializer
