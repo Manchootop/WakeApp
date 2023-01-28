@@ -9,3 +9,6 @@ class FriendshipRequestForm(forms.ModelForm):
             'receiver': forms.HiddenInput(),
             'status': forms.HiddenInput()
         }
+
+class CreateFriendShip:
+    pass

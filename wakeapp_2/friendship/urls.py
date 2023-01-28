@@ -1,15 +1,15 @@
 from django.urls import path
 
-from wakeapp_2.friendship.views import SendFriendshipRequestView, AcceptFriendshipRequestView, \
-    RejectFriendshipRequestView, FriendshipViewSet
+# from wakeapp_2.friendship.views import SendFriendshipRequestView, AcceptFriendshipRequestView, \
+#     RejectFriendshipRequestView, FriendshipViewSet
 
 urlpatterns = [
-    path('friends/', FriendshipViewSet.as_view({'get': 'list'}), name='friends'),
-    path('friendship-requests/', SendFriendshipRequestView.as_view({'post': 'create'}), name='send_friendship_request'),
-    path('friendship-requests/<int:pk>/accept/', AcceptFriendshipRequestView.as_view({'put': 'update'}),
-         name='accept_friendship_request'),
-    path('friendship-requests/<int:pk>/reject/', RejectFriendshipRequestView.as_view({'put': 'update'}),
-         name='reject_friendship_request'),
+    # path('friends/', FriendshipViewSet.as_view({'get': 'list'}), name='friends'),
+    # path('friendship-requests/', SendFriendshipRequestView.as_view({'post': 'create'}), name='send_friendship_request'),
+    # path('friendship-requests/<int:pk>/accept/', AcceptFriendshipRequestView.as_view({'put': 'update'}),
+    #      name='accept_friendship_request'),
+    # path('friendship-requests/<int:pk>/reject/', RejectFriendshipRequestView.as_view({'put': 'update'}),
+    #      name='reject_friendship_request'),
 ]
 
 '''

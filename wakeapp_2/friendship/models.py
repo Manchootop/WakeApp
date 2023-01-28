@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
 
@@ -29,6 +30,11 @@ class Friend(models.Model):
     def __str__(self):
         return f'User {self.from_user_id} friendship requested {self.to_user_id}'
 
+    def save(self, *args, **kwargs):
+        # Ensure users can't be friends with themselves
+        if self.to_user == self.from_user:
+            raise ValidationError("Users cannot be friends with themselves.")
+        super().save(*args, **kwargs)
 
 # class FriendshipRequest(models.Model):
 #     from_user = models.ForeignKey(
