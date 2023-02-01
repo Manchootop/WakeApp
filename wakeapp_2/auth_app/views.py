@@ -29,4 +29,3 @@ class RegisterView(views.CreateView, SuccessMessageMixin):
 
 class ChangeUserPasswordView(auth_views.PasswordChangeView):
     template_name = 'accounts/change_password.html'
-    # template_name = 'friendship.html'

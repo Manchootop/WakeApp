@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ form_action|title }} Friendship Request</h2>
+<form method="post">
+  <!-- form fields here -->
+  <input type="hidden" name="action" value="accept">
+  <input type="submit" value="Accept">
+</form>
+
+<form method="post">
+  <!-- form fields here -->
+  <input type="hidden" name="action" value="reject">
+  <input type="submit" value="Reject">
+</form>
+
+{% endblock %}

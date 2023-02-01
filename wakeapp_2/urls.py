@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('wakeapp_2.main.urls')),
     path('accounts/', include('wakeapp_2.auth_app.urls')),
+    path('friendship/', include('wakeapp_2.friendship.urls')),
 
 ]

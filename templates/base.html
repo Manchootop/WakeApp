@@ -40,6 +40,15 @@
                 </li>
             {% endif %}
         </ul>
+        <ul class="navbar-nav" style="margin: auto 0">
+            <form action="{% url 'search_user' %}" method="get">
+                {% csrf_token %}
+                <label for="search" class="label-default"></label>
+                <input class="" type="text" name="q" id="search">
+                <button type="submit" class="btn-sm btn-primary">Search</button>
+            </form>
+
+        </ul>
     </div>
 </nav>
 

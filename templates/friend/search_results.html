@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block page_content %}
+{% if users %}
+    <h2>Results</h2>
+    <ul>
+        {% for user in users %}
+            <li style="text-decoration: none">{{ user.username }}</li>
+            <a href="{% url 'add friend' user.username %} ">Add friend</a>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h2>No results found</h2>
+{% endif %}
+{% endblock %}
