@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic as generic_views
 from .exceptions import AlreadyExistsError
-from .forms import CreateFriendShip
+# from .forms import CreateFriendShip
 from .models import Friend, FriendshipRequest
 from ..auth_app.models import WakeAppProfile
 
@@ -28,7 +28,7 @@ class ViewFriendView(generic_views.DetailView):
 class AddFriendView(LoginRequiredMixin, generic_views.CreateView):
     template_name = "friend/add.html"
     # template_name = 'friendship.html'
-    form_class = CreateFriendShip
+    # form_class = CreateFriendShip
     model = FriendshipRequest
 
     def dispatch(self, request, *args, **kwargs):
@@ -138,3 +138,22 @@ def friendship_requests_detail(
     f_request = get_object_or_404(FriendshipRequest, id=friendship_request_id)
 
     return render(request, template_name, {"friendship_request": f_request})
+
+
+class ListFriendsView(generic_views.ListView):
+    model = Friend
+    template_name = 'friend/list_friends.html'
+    context_object_name = 'friends'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['friends'] = context['friends'].filter(to_user__accepted=self.request.user)
+        context['count'] = context['friends'].filter(complete=False).count()
+
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['friends'] = context['friends'].filter(title__icontains=search_input)
+
+        context['search_input'] = search_input
+
+        return context

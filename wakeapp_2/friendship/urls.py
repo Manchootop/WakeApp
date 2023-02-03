@@ -12,14 +12,15 @@ from django.urls import path
 #      name='reject_friendship_request'),
 # ]
 from wakeapp_2.friendship.views import AddFriendView, FriendshipCancelView, \
-    FriendshipAcceptRejectView, UserSearchView
+    FriendshipAcceptRejectView, UserSearchView, ListFriendsView
 
 urlpatterns = [
-    path('add/<int:pk>/', AddFriendView.as_view(), name='add friend'),
+    path('add/', AddFriendView.as_view(), name='add friend'),
     path('cancel/<int:friendship_request_id>/', FriendshipCancelView.as_view(), name='friendship_cancel'),
     path('accept_or_reject/<int:friendship_request_id>/', FriendshipAcceptRejectView.as_view(),
          name='friendship_accept_or_reject'),
-    path('search_user/', UserSearchView.as_view(), name='search_user')
+    path('search_user/', UserSearchView.as_view(), name='search_user'),
+    path('list/', ListFriendsView.as_view(), name='list_friends'),
 ]
 
 '''

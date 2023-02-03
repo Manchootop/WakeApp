@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    <div>
+        <form method="GET">
+            <input type='text' name='search-area' placeholder="Search your task" value="{{ search_input }}">
+            <input class="button" type="submit" value='Search'>
+        </form>
+        {% if friends|length > 0 %}
+            <a id="add-link" href="{% url 'login user'  %}">&#x2b;</a>
+{#            create idk #}
+        {% endif %}
+    </div>
+
+    <div id=class= class=>
+        {% for friend in friends %}
+            <div data-position="{{ task.pk }}">
+                <div class="">
+                    <a href="{% url 'task-edit' friend.id %}">{{ task }}</a>
+                </div>
+                <div>
+                    <a href="{% url 'task-delete' task.id %}">&#215;</a>
+                    <span> &#10247;</span>
+                </div>
+            </div>
+
+        {% empty %}
+            <div>
+                <h3>No new tasks are created.</h3>
+                <h3>Create a <a href="{% url 'add friend' %}">Find Friends</a></h3>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
